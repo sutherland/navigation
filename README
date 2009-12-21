@@ -14,11 +14,11 @@ In your controller:
 	
 In your view:
 
-  <% navigate_to :main_menu, :posts do %>
+  <% navigate :main_menu, :posts do %>
     <%= link_to 'Posts', posts_path %>
   <% end %>
 
-  <% navigate_to :main_menu, :users, :unless => !authorized? do %>
+  <% navigate :main_menu, :users, :unless => !authorized? do %>
   	<%= link_to 'Users', users_path %>
   <% end %>
 

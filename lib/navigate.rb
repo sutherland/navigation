@@ -22,11 +22,11 @@ module Navigate
     module InstanceMethods
       # Example:
       #
-      #   <% navigate_to :main_menu, :posts do %>
+      #   <% navigate :main_menu, :posts do %>
       #     <a href='/posts'>Posts</a>
       #   <% end %>
       #
-      #   <% navigate_to :main_menu, :users, :unless => !authorized? do %>
+      #   <% navigate :main_menu, :users, :unless => !authorized? do %>
       #     <a href='/users'>Users</a>
       #   <% end %>
       #
@@ -39,14 +39,14 @@ module Navigate
       #   <li>
       #     <a href='/users'>Users</a>
       #   </li>
-      def navigate_to(namespace, item, options = {}, &block)
+      def navigate(namespace, item, options = {}, &block)
         options[:tag] ||= :li
         options[:class] = "#{options[:class]} nav_item".strip
       
-        # navigate_to :main_menu, :settings, :if => authorized?
+        # navigate :main_menu, :settings, :if => authorized?
         return if options.include?(:if) and !options[:if]
       
-        # navigate_to :main_menu, :settings, :unless => !authorized?
+        # navigate :main_menu, :settings, :unless => !authorized?
         return if options.include?(:unless) and options[:unless]
 
         if defined?(@navigation_namespaces) && @navigation_namespaces[namespace] == item
@@ -62,11 +62,11 @@ module Navigate
     # Example:
     #
     #   class PostsControllerTest < ActionController::TestCase
-    #     assert_navigates_to :main_menu, :posts
-    #     assert_navigates_to :sub_menu,  :active, :only => :index
-    #     assert_navigates_to :sub_menu,  :drafts, :only => :drafts
+    #     assert_navigates :main_menu, :posts
+    #     assert_navigates :sub_menu,  :active, :only => :index
+    #     assert_navigates :sub_menu,  :drafts, :only => :drafts
     #   end
-    def assert_navigates_to(namespace, item, options = {})
+    def assert_navigates(namespace, item, options = {})
       # TODO
     end
   end
