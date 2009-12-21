@@ -1,13 +1,26 @@
 Navigate
 ========
-
-Introduction goes here.
-
+A simple navigation plugin allowing multiple navigation namespaces.
 
 Example
 =======
+In your controller:
 
-Example goes here.
+	class PostsController < ApplicationController
+  	navigate :main_menu, :posts
+	  navigate :sub_menu,  :active, :only => :index
+	  navigate :sub_menu,  :drafts, :only => :drafts
+	end
+	
+In your view:
+
+  <% navigate_to :main_menu, :posts do %>
+    <%= link_to 'Posts', posts_path %>
+  <% end %>
+
+  <% navigate_to :main_menu, :users, :unless => !authorized? do %>
+  	<%= link_to 'Users', users_path %>
+  <% end %>
 
 
 Copyright (c) 2009 [name of plugin creator], released under the MIT license
