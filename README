@@ -54,9 +54,18 @@ Controller actions can navigate independently of each other:
 Conditional Rendering
 =====================
 
-In your view, you can choose when to render a navigation item:
+In your view, you can choose when to render a navigation item using the
+if and unless options.
+
+Example using unless:
 
   <% navigate :main_menu, :users, :unless => !authorized? do %>
+	  ...
+	<% end %>
+	
+Example using if:
+	
+	<% navigate :main_menu, :users, :if => authorized? do %>
 	  ...
 	<% end %>
 	
