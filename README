@@ -1,26 +1,63 @@
 Navigate
 ========
-A simple navigation plugin allowing multiple navigation namespaces.
 
-Example
-=======
+Allows you to identify navigation namespaces in your controllers, and
+render navigation items in your views.
+
+
+Basic Example
+=============
+
 In your controller:
+
+	class PagesController < ApplicationController
+		navigate :main_menu, :pages
+	end
 
 	class PostsController < ApplicationController
   	navigate :main_menu, :posts
-	  navigate :sub_menu,  :active, :only => :index
-	  navigate :sub_menu,  :drafts, :only => :drafts
 	end
 	
 In your view:
 
-  <% navigate :main_menu, :posts do %>
-    <%= link_to 'Posts', posts_path %>
+  <% navigate :main_menu, :pages do %>
+    <%= link_to 'Pages', pages_path %>
   <% end %>
 
-  <% navigate :main_menu, :users, :unless => !authorized? do %>
+  <% navigate :main_menu, :posts do %>
   	<%= link_to 'Users', users_path %>
   <% end %>
 
+Assuming the request routed to the PagesController:
+
+	<li class="selected">
+		<a href="/pages">Pages</a>
+	</li>
+	
+	<li>
+		<a href="/posts">Posts</a>
+	</li>
+	
+
+Navigate Independently
+======================
+
+Controller actions can navigate independently of each other:
+
+	class PostsController
+		navigate :sub_menu, :show, :only => :show
+		navigate :sub_menu, :edit, :only => :edit
+	end
+	
+
+Conditional Rendering
+=====================
+
+In your view, you can choose when to render a tab:
+
+  <% navigate :main_menu, :users, :unless => !authorized? do %>
+	  <%= link_to 'Users', users_path %>
+	<% end %>
+	
 
 Copyright (c) 2009 Jonathan Sutherland, released under the MIT license
