@@ -42,12 +42,9 @@ module Navigate
       def navigate(namespace, item, options = {}, &block)
         options[:tag] ||= :li
         options[:class] = "#{options[:class]} nav_item".strip
-      
-        # navigate :main_menu, :settings, :if => authorized?
-        return if options.include?(:if) and !options[:if]
-      
-        # navigate :main_menu, :settings, :unless => !authorized?
-        return if options.include?(:unless) and options[:unless]
+        
+        return if options.include?(:if) && !options[:if]
+        return if options.include?(:unless) && options[:unless]
 
         if defined?(@navigation_namespaces) && @navigation_namespaces[namespace] == item
           options.merge! :class => "#{options[:class]} selected".strip
