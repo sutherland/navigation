@@ -28,13 +28,14 @@ In your view:
   	<%= link_to 'Users', users_path %>
   <% end %>
 
-Assuming the request routed to the PagesController:
+Assuming the request routed to the PagesController, the view will
+render as:
 
-	<li class="selected">
+	<li class="nav_item selected">
 		<a href="/pages">Pages</a>
 	</li>
 	
-	<li>
+	<li class="nav_item">
 		<a href="/posts">Posts</a>
 	</li>
 	
@@ -56,8 +57,25 @@ Conditional Rendering
 In your view, you can choose when to render a tab:
 
   <% navigate :main_menu, :users, :unless => !authorized? do %>
-	  <%= link_to 'Users', users_path %>
+	  ...
 	<% end %>
 	
+	
+Customize Navigation Items
+==========================
+
+You can specify a different HTML tag for your navigation items using
+the tag option. For example:
+
+	<% navigate :main_menu, :pages, :tag => :div do %>
+		...
+	<% end %>
+	
+Will render as:
+
+	<div class="nav_item">
+		...
+	</div>
+
 
 Copyright (c) 2009 Jonathan Sutherland, released under the MIT license
