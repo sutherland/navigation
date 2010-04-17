@@ -1,4 +1,4 @@
 require 'navigate'
 
-ActionView::Base.send :include, Navigate::ActionView::InstanceMethods
-ActionController::Base.extend Navigate::ActionController::ClassMethods
+ActionController::Base.send(:include, Navigate::ActionController)
+ActionView::Base.send(:include, Navigate::ActionView)

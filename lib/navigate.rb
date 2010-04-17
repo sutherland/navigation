@@ -1,70 +1,67 @@
 module Navigate
   module ActionController
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+    
     module ClassMethods
       # Example:
       #
       #   class PostsController < ApplicationController
-      #     navigate :main_menu, :posts
-      #     navigate :sub_menu,  :active, :only => :index
-      #     navigate :sub_menu,  :drafts, :only => :drafts
+      #     navigation :main_menu, :posts
+      #     navigation :sub_menu,  :active, :only => :index
+      #     navigation :sub_menu,  :drafts, :only => :drafts
       #   end
-      def navigate(namespace, item, options = {})
-        before_filter(options) do |controller|          
-          namespaces = controller.instance_variable_get(:@navigation_namespaces) || {}
-          namespaces.merge!(namespace => item)
-          controller.instance_variable_set(:@navigation_namespaces, namespaces)
+      def navigation(context, location, options = {})
+        before_filter(options) do |controller|
+          controller.send(:define_navigation, context, location)
         end
       end
+    end
+  
+  private
+  
+    def define_navigation(context, location)
+      @_navigation_definitions ||= {}
+      @_navigation_definitions.merge!(context => location)
     end
   end
   
   module ActionView
-    module InstanceMethods
-      # Example:
-      #
-      #   <% navigate :main_menu, :posts do %>
-      #     <a href='/posts'>Posts</a>
-      #   <% end %>
-      #
-      #   <% navigate :main_menu, :users, :unless => !authorized? do %>
-      #     <a href='/users'>Users</a>
-      #   <% end %>
-      #
-      # Renders as:
-      #
-      #   <li class="selected">
-      #     <a href='/posts'>Posts</a>
-      #   </li>
-      #
-      #   <li>
-      #     <a href='/users'>Users</a>
-      #   </li>
-      def navigate(namespace, item, options = {}, &block)
-        options[:tag] ||= :li
-        options[:class] = "#{options[:class]} nav_item".strip
-        
-        return if options.include?(:if) && !options[:if]
-        return if options.include?(:unless) && options[:unless]
-
-        if defined?(@navigation_namespaces) && @navigation_namespaces[namespace] == item
-          options.merge! :class => "#{options[:class]} selected".strip
-        end
-
-        concat content_tag(options.delete(:tag), capture(&block), options)
-      end
-    end
-  end
-  
-  module TestHelper
     # Example:
     #
-    #   class PostsControllerTest < ActionController::TestCase
-    #     assert_navigates :main_menu, :posts
-    #     assert_navigates :sub_menu,  :active, :only => :index
-    #     assert_navigates :sub_menu,  :drafts, :only => :drafts
-    #   end
-    def assert_navigates(namespace, item, options = {})
-      # TODO
+    #   <% navigate :main_menu, :posts do %>
+    #     <%= link_to 'Posts', posts_path %>
+    #   <% end %>
+    #
+    #   <% navigate :main_menu, :users, :unless => !authorized? do %>
+    #     <%= link_to 'Users', users_path %>
+    #   <% end %>
+    #
+    # Renders as:
+    #
+    #   <span class="nav_item selected">
+    #     <a href="/posts">Posts</a>
+    #   </span>
+    #
+    #   <span class="nav_item">
+    #     <a href="/users">Users</a>
+    #   </span>
+    def navigate(context, location, options = {}, &block)
+      options[:tag] ||= :span
+      options[:class] = "#{options[:class]} navigation_item".strip
+      
+      # Don't render navigation when options[:if] is false
+      return if options.include?(:if) && !options[:if]
+      
+      # Don't render navigation when options[:unless] is true
+      return if options.include?(:unless) && options[:unless]
+      
+      if @_navigation_definitions && @_navigation_definitions[context] == location
+        options[:class] += " selected"
+      end
+
+      concat content_tag(options.delete(:tag), capture(&block), options)
     end
   end
 end
