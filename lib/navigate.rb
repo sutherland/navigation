@@ -34,17 +34,25 @@ module Navigate
     #     <%= link_to 'Posts', posts_path %>
     #   <% end %>
     #
-    #   <% navigate :main_menu, :users, :unless => !authorized? do %>
+    #   <% navigate :main_menu, :comments do %>
+    #     <%= link_to 'Comments', comments_path %>
+    #   <% end %>
+    #
+    #   <% navigate :main_menu, :users, :unless => !current_user.admin? do %>
     #     <%= link_to 'Users', users_path %>
     #   <% end %>
     #
     # Renders as:
     #
-    #   <span class="nav_item selected">
+    #   <span class="navigation_item selected">
     #     <a href="/posts">Posts</a>
     #   </span>
     #
-    #   <span class="nav_item">
+    #   <span class="navigation_item">
+    #     <a href="/comments">Comments</a>
+    #   </span>
+    #
+    #   <span class="navigation_item">
     #     <a href="/users">Users</a>
     #   </span>
     def navigate(context, location, options = {}, &block)
