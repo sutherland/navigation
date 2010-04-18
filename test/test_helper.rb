@@ -1,3 +1,7 @@
 require 'rubygems'
+require 'navigation'
+
+require 'test/unit'
 require 'active_support'
-require 'active_support/test_case'
+require 'action_controller'
+require 'action_view/test_case'

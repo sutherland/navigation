@@ -1,5 +1,5 @@
-Navigate
-========
+Navigation
+==========
 
 Allows you to identify navigation namespaces in your controllers, and
 render navigation items in your views.

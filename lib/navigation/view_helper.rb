@@ -1,33 +1,5 @@
-module Navigate
-  module ActionController
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
-    
-    module ClassMethods
-      # Example:
-      #
-      #   class PostsController < ApplicationController
-      #     navigation :main_menu, :posts
-      #     navigation :sub_menu,  :active, :only => :index
-      #     navigation :sub_menu,  :drafts, :only => :drafts
-      #   end
-      def navigation(context, location, options = {})
-        before_filter(options) do |controller|
-          controller.send(:define_navigation, context, location)
-        end
-      end
-    end
-  
-  private
-  
-    def define_navigation(context, location)
-      @_navigation_definitions ||= {}
-      @_navigation_definitions.merge!(context => location)
-    end
-  end
-  
-  module ActionView
+module Navigation
+  module ViewHelper
     # Example:
     #
     #   <% navigate :main_menu, :posts do %>
