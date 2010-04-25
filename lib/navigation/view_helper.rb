@@ -31,11 +31,9 @@ module Navigation
       options[:tag] ||= :span
       options[:class] = "#{options[:class]} navigation_item".strip
       
-      # Don't render navigation when options[:if] is false
-      return if options.include?(:if) && !options[:if]
-      
-      # Don't render navigation when options[:unless] is true
-      return if options.include?(:unless) && options[:unless]
+      if options.include?(:if)
+        return unless options[:if]
+      end
       
       if @_navigation_definitions && @_navigation_definitions[context] == location
         options[:class] += " selected"

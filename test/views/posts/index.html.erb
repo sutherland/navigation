@@ -1,0 +1,15 @@
+<% navigate :main_menu, :posts do %>
+  <%= link_to 'Posts', '/posts' %>
+<% end %>
+
+<% navigate :main_menu, :comments do %>
+  <%= link_to 'Comments', '/comments' %>
+<% end %>
+
+<% navigate :main_menu, :users, :if => signed_in? do %>
+  <%= link_to 'Users', '/users' %>
+<% end %>
+
+<% navigate :main_menu, :admin, :class => 'priviledged' do %>
+  <%= link_to 'Admin', '/admin' %>
+<% end %>
