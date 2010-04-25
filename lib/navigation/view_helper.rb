@@ -10,10 +10,6 @@ module Navigation
     #     <%= link_to 'Comments', comments_path %>
     #   <% end %>
     #
-    #   <% navigate :main_menu, :users, :unless => !current_user.admin? do %>
-    #     <%= link_to 'Users', users_path %>
-    #   <% end %>
-    #
     # Renders as:
     #
     #   <span class="navigation_item selected">
@@ -22,10 +18,6 @@ module Navigation
     #
     #   <span class="navigation_item">
     #     <a href="/comments">Comments</a>
-    #   </span>
-    #
-    #   <span class="navigation_item">
-    #     <a href="/users">Users</a>
     #   </span>
     def navigate(context, location, options = {}, &block)
       options[:tag] ||= :span
