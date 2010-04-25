@@ -1,8 +1,7 @@
 Navigation
 ==========
 
-Allows you to identify navigation namespaces in your controllers, and
-render navigation items in your views.
+Easily define navigations in your controllers, and render navigation items in your views.
 
 
 Basic Example
@@ -11,11 +10,11 @@ Basic Example
 In your controller:
 
 	class PagesController < ApplicationController
-		navigate :main_menu, :pages
+		navigation :main_menu, :pages
 	end
 
 	class PostsController < ApplicationController
-  	navigate :main_menu, :posts
+  	navigation :main_menu, :posts
 	end
 	
 In your view:
@@ -31,41 +30,33 @@ In your view:
 Assuming the request routed to the PagesController, the view will
 render as:
 
-	<li class="nav_item selected">
+	<span class="navigation_item selected">
 		<a href="/pages">Pages</a>
-	</li>
+	</span>
 	
-	<li class="nav_item">
+	<span class="navigation_item">
 		<a href="/posts">Posts</a>
-	</li>
+	</span>
 	
 
 Navigate Independently
 ======================
 
-Controller actions can navigate independently of each other:
+Controller actions can navigate independently of one another:
 
 	class PostsController
-		navigate :sub_menu, :show, :only => :show
-		navigate :sub_menu, :edit, :only => :edit
+		navigation :post_menu, :show, :only => :show
+		navigation :post_menu, :edit, :only => :edit
 	end
 	
 
 Conditional Rendering
 =====================
 
-In your view, you can choose when to render a navigation item using the
-if and unless options.
-
-Example using unless:
-
-  <% navigate :main_menu, :users, :unless => !authorized? do %>
-	  ...
-	<% end %>
+In your view, you can choose when to render a navigation item using
+the :if option:
 	
-Example using if:
-	
-	<% navigate :main_menu, :users, :if => authorized? do %>
+	<% navigate :main_menu, :users, :if => administrator? do %>
 	  ...
 	<% end %>
 	
@@ -73,18 +64,34 @@ Example using if:
 Customize Navigation Items
 ==========================
 
+HTML Tag
+--------
 You can specify a different HTML tag for your navigation items using
-the tag option. For example:
+the :tag option:
 
-	<% navigate :main_menu, :pages, :tag => :div do %>
+	<% navigate :main_menu, :pages, :tag => :li do %>
 		...
 	<% end %>
 	
 Will render as:
 
-	<div class="nav_item">
+	<li class="navigation_item">
 		...
-	</div>
+	</li>
+
+CSS Class
+---------
+You can specify css class names using the :class option:
+
+  <% navigate :main_menu, :pages, :class => 'blue' do %>
+  	...
+  <% end %>
+
+Will render as:
+
+	<span class="blue navigation_item">
+		...
+	</span>
 
 
-Copyright (c) 2009 Jonathan Sutherland, released under the MIT license
+Copyright (c) 2010 Jonathan Sutherland, released under the MIT license
