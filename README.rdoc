@@ -1,10 +1,11 @@
-A simple, powerful navigation helper for Rails.
-The power of this plugin lies in handling multiple navigations.
-Extracted from Real Space http://realspace.me
+= Navigation
 
+A simple, powerful navigation helper for Rails. The power of this
+plugin lies in handling multiple navigations.
 
-Basics
-======
+This plugins is extracted from {Real Space}[http://realspace.me]
+
+== Basic Usage
 
 In your controller:
 
@@ -37,10 +38,8 @@ is rendered as:
   <span class="navigation_item">
     <a href="...">Posts</a>
   </span>
-  
 
-Multiple Navigations
-====================
+== Multiple Navigations
 
 The real power of this plugin lies in the ability to easily manage
 multiple navigations:
@@ -55,9 +54,7 @@ multiple navigations:
     navigation :content_menu, :posts
   end
 
-
-Navigate Independently
-======================
+== Navigate Independently
 
 Controller actions can navigate independently of one another:
 
@@ -66,9 +63,7 @@ Controller actions can navigate independently of one another:
     navigation :admin_menu, :edit, :only => [:edit, :update]
   end
   
-
-Conditional Rendering
-=====================
+== Conditional Rendering
 
 In your view, you can control when to render a navigation item using
 the :if or :unless options:
@@ -81,12 +76,10 @@ the :if or :unless options:
     <%= link_to 'Users' ... %>
   <% end %>
   
-  
-Customize Navigation Items
-==========================
+== Customize Navigation Items
 
-HTML Tag
---------
+=== HTML Tag
+
 You can specify a different HTML tag for your navigation items using
 the :tag option:
 
@@ -100,8 +93,8 @@ Will render as:
     ...
   </li>
 
-CSS Class
----------
+=== CSS Class
+
 You can specify css class names using the :class option:
 
   <%= navigate :main_menu, :pages, :class => 'blue' do %>
@@ -114,5 +107,6 @@ Will render as:
     ...
   </span>
 
+== License
 
-Copyright (c) 2010 Jonathan Sutherland, released under the MIT license
+Copyright (c) 2010 Jonathan Sutherland. Released under the MIT license.
