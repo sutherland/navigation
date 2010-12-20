@@ -1,37 +1,34 @@
 module Navigation
   module ViewHelper
-    # Example:
+    # Examples:
     #
     #   <% navigate :main_menu, :posts do %>
-    #     <%= link_to 'Posts', posts_path %>
+    #     <%= link_to 'Posts' ... %>
     #   <% end %>
     #
-    #   <% navigate :main_menu, :comments do %>
-    #     <%= link_to 'Comments', comments_path %>
+    #   <% navigate :main_menu, :comments, :tag => :div do %>
+    #     <%= link_to 'Comments'... %>
     #   <% end %>
     #
-    # Renders as:
+    #   <% navigate :admin_menu, :users, :if => administrator? do %>
+    #     <%= link_to 'Users' ... %>
+    #   <% end %>
     #
-    #   <span class="navigation_item selected">
-    #     <a href="/posts">Posts</a>
-    #   </span>
-    #
-    #   <span class="navigation_item">
-    #     <a href="/comments">Comments</a>
-    #   </span>
+    #   <% navigate :admin_menu, :users, :unless => !administrator? do %>
+    #     <%= link_to 'Users' ... %>
+    #   <% end %>
     def navigate(context, location, options = {}, &block)
+      return if options.include?(:if) && !options[:if]
+      return if options.include?(:unless) && options[:unless]
+      
       options[:tag] ||= :span
       options[:class] = "#{options[:class]} navigation_item".strip
-      
-      if options.include?(:if)
-        return unless options[:if]
-      end
       
       if @_navigation_definitions && @_navigation_definitions[context] == location
         options[:class] += " selected"
       end
 
-      content_tag(options.delete(:tag), capture(&block), options)
+      concat content_tag(options.delete(:tag), capture(&block), options)
     end
   end
 end
