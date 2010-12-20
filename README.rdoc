@@ -66,7 +66,7 @@ Controller actions can navigate independently of one another:
 == Conditional Rendering
 
 In your view, you can control when to render a navigation item using
-the :if or :unless options:
+the +:if+ or +:unless+ options:
   
   <%= navigate :admin_menu, :users, :if => administrator? do %>
     <%= link_to 'Users' ... %>
