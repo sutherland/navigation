@@ -84,7 +84,7 @@ You can specify a different HTML tag for your navigation items using
 the <tt>:tag</tt> option:
 
   <%= navigate :content_menu, :pages, :tag => :li do %>
-    <%= link_to 'Pages' ... %>
+    ...
   <% end %>
   
 Will render as:
@@ -95,7 +95,7 @@ Will render as:
 
 === CSS Class
 
-You can specify css class names using the <tt>:class</tt> option:
+You can specify CSS class names using the <tt>:class</tt> option:
 
   <%= navigate :main_menu, :pages, :class => 'blue' do %>
     ...
