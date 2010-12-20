@@ -25,7 +25,7 @@ module Navigation
       options[:class] = "#{options[:class]} navigation_item".strip
       
       if @_navigation_definitions && @_navigation_definitions[context] == location
-        options[:class] += " selected"
+        options[:class] = "selected #{options[:class]}"
       end
 
       concat content_tag(options.delete(:tag), capture(&block), options)

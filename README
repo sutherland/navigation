@@ -28,7 +28,7 @@ When the view is rendered, the "current" navigation item will be
 selected. Assuming the request routed to the PagesController, the view
 is rendered as:
 
-  <span class="navigation_item selected">
+  <span class="selected navigation_item">
     <a href="...">Pages</a>
   </span>
   
