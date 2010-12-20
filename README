@@ -1,4 +1,7 @@
-Easily define navigations in your controllers, and render navigation items in your views.
+A simple, powerful navigation helper for Rails.
+
+The power of this plugin lies in handling multiple navigations.
+Read below for more details.
 
 
 Basics
