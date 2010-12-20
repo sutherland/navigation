@@ -1,63 +1,82 @@
-Navigation
-==========
-
 Easily define navigations in your controllers, and render navigation items in your views.
 
 
-Basic Example
-=============
+Basics
+======
 
 In your controller:
 
   class PagesController < ApplicationController
-    navigation :main_menu, :pages
+    navigation :content_menu, :pages
   end
 
   class PostsController < ApplicationController
-    navigation :main_menu, :posts
+    navigation :content_menu, :posts
   end
   
 In your view:
 
-  <% navigate :main_menu, :pages do %>
-    <%= link_to 'Pages', pages_path %>
+  <%= navigate :content_menu, :pages do %>
+    <%= link_to 'Pages' ... %>
   <% end %>
 
-  <% navigate :main_menu, :posts do %>
-    <%= link_to 'Users', users_path %>
+  <%= navigate :content_menu, :posts do %>
+    <%= link_to 'Posts' ... %>
   <% end %>
 
-Assuming the request routed to the PagesController, the view will
-render as:
+When the view is rendered, the "current" navigation item will be
+selected. Assuming the request routed to the PagesController, the view
+is rendered as:
 
   <span class="navigation_item selected">
-    <a href="/pages">Pages</a>
+    <a href="...">Pages</a>
   </span>
   
   <span class="navigation_item">
-    <a href="/posts">Posts</a>
+    <a href="...">Posts</a>
   </span>
   
+
+Multiple Navigations
+====================
+
+The real power of this plugin lies in the ability to easily manage
+multiple navigations:
+
+  class PagesController
+    navigation :main_menu,    :content
+    navigation :content_menu, :pages
+  end
+
+  class PostsController
+    navigation :main_menu,    :content
+    navigation :content_menu, :posts
+  end
+
 
 Navigate Independently
 ======================
 
 Controller actions can navigate independently of one another:
 
-  class PostsController
-    navigation :post_menu, :show, :only => :show
-    navigation :post_menu, :edit, :only => :edit
+  class PagesController
+    navigation :admin_menu, :new,  :only => [:new, :create]
+    navigation :admin_menu, :edit, :only => [:edit, :update]
   end
   
 
 Conditional Rendering
 =====================
 
-In your view, you can choose when to render a navigation item using
-the :if option:
+In your view, you can control when to render a navigation item using
+the :if or :unless options:
   
-  <% navigate :main_menu, :users, :if => administrator? do %>
-    ...
+  <%= navigate :admin_menu, :users, :if => administrator? do %>
+    <%= link_to 'Users' ... %>
+  <% end %>
+  
+  <%= navigate :admin_menu, :users, :unless => !administrator? do %>
+    <%= link_to 'Users' ... %>
   <% end %>
   
   
@@ -69,8 +88,8 @@ HTML Tag
 You can specify a different HTML tag for your navigation items using
 the :tag option:
 
-  <% navigate :main_menu, :pages, :tag => :li do %>
-    ...
+  <%= navigate :content_menu, :pages, :tag => :li do %>
+    <%= link_to 'Pages' ... %>
   <% end %>
   
 Will render as:
@@ -83,7 +102,7 @@ CSS Class
 ---------
 You can specify css class names using the :class option:
 
-  <% navigate :main_menu, :pages, :class => 'blue' do %>
+  <%= navigate :main_menu, :pages, :class => 'blue' do %>
     ...
   <% end %>
 
