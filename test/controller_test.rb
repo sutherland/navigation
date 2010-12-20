@@ -4,8 +4,9 @@ class PostsController < ActionController::Base
   navigation :main_menu,    :content
   navigation :content_menu, :posts
 
-  def index; head :ok; end
-  def edit;  head :ok; end
+  def index
+    head :ok
+  end
 end
 
 class ControllerTest < ActionController::TestCase
