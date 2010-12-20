@@ -28,7 +28,7 @@ module Navigation
         options[:class] = "selected #{options[:class]}"
       end
 
-      concat content_tag(options.delete(:tag), capture(&block), options)
+      content_tag(options.delete(:tag), capture(&block), options)
     end
   end
 end
