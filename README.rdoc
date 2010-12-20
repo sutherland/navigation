@@ -66,7 +66,7 @@ Controller actions can navigate independently of one another:
 == Conditional Rendering
 
 In your view, you can control when to render a navigation item using
-the +if+ or +unless+ options:
+the <tt>:if</tt> or <tt>:unless</tt> options:
   
   <%= navigate :admin_menu, :users, :if => administrator? do %>
     <%= link_to 'Users' ... %>
@@ -81,7 +81,7 @@ the +if+ or +unless+ options:
 === HTML Tag
 
 You can specify a different HTML tag for your navigation items using
-the :tag option:
+the <tt>:tag</tt> option:
 
   <%= navigate :content_menu, :pages, :tag => :li do %>
     <%= link_to 'Pages' ... %>
@@ -95,7 +95,7 @@ Will render as:
 
 === CSS Class
 
-You can specify css class names using the :class option:
+You can specify css class names using the <tt>:class</tt> option:
 
   <%= navigate :main_menu, :pages, :class => 'blue' do %>
     ...
