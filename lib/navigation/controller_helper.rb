@@ -1,23 +1,23 @@
 module Navigation
   module ControllerHelper
     def self.included(base)
+      base.send(:include, InstanceMethods)
       base.extend(ClassMethods)
     end
     
     module ClassMethods
-      # Example:
+      # Examples:
       #
       #   class PostsController < ApplicationController
-      #     navigation :main_menu, :content
-      #     navigation :sub_menu,  :posts
+      #     navigation :main_menu,    :content
+      #     navigation :content_menu, :posts
       #   end
       #
       #   class CommentsController < ApplicationController
-      #     navigation :main_menu, :content
-      #     navigation :sub_menu,  :comments
+      #     navigation :main_menu,    :content
+      #     navigation :content_menu, :comments
       #   end
       def navigation(context, location, options = {})
-        send :include, InstanceMethods
         before_filter(options) do |controller|
           controller.send(:define_navigation, context, location)
         end
