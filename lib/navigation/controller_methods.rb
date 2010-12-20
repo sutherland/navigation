@@ -1,5 +1,5 @@
 module Navigation
-  module ControllerHelper
+  module ControllerMethods
     def self.included(base)
       base.send(:include, InstanceMethods)
       base.extend(ClassMethods)

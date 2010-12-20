@@ -1,2 +1,2 @@
-require 'navigation/controller_helper'
+require 'navigation/controller_methods'
 require 'navigation/view_helper'
