@@ -1,3 +1,7 @@
+<%= navigate :content_menu, :posts do %>
+  <%= link_to 'Posts' %>
+<% end %>
+
 <%= navigate :context, :action do %>
   <%= link_to 'test default tag' %>
 <% end %>
@@ -10,14 +14,12 @@
   <%= link_to 'test :class option' %>
 <% end %>
 
-<%= navigate :context, :action, :if => true do %>
-  <%= link_to 'test :if option is true' %>
-<% end %>
+<% [true, false].each do |value| %>
+  <%= navigate :context, :action, :if => value do %>
+    <%= link_to "test :if option is #{value}" %>
+  <% end %>
 
-<%= navigate :context, :action, :unless => false do %>
-  <%= link_to 'test :unless option is false' %>
-<% end %>
-
-<%= navigate :content_menu, :posts do %>
-  <%= link_to 'Posts' %>
+  <%= navigate :context, :action, :unless => value do %>
+    <%= link_to "test :unless option is #{value}" %>
+  <% end %>
 <% end %>

@@ -12,6 +12,11 @@ class ViewHelperTest < ActionController::TestCase
       get :index
     end
     
+    should "assign 'selected' class to current items" do
+      assert_tag 'span', :attributes => { :class => 'selected navigation_item' },
+                         :descendant => { :tag => 'a', :content => 'Posts' }
+    end
+    
     should "be span tag by default" do
       assert_tag 'span', :attributes => { :class => 'navigation_item' },
                          :descendant => { :tag => 'a', :content => 'test default tag' }
@@ -37,9 +42,14 @@ class ViewHelperTest < ActionController::TestCase
                          :descendant => { :tag => 'a', :content => 'test :unless option is false' }
     end
     
-    should "assign 'selected' class to current items" do
-      assert_tag 'span', :attributes => { :class => 'selected navigation_item' },
-                         :descendant => { :tag => 'a', :content => 'Posts' }
+    should "not render when :if option is false" do
+      assert_no_tag 'span', :attributes => { :class => 'navigation_item' },
+                            :descendant => { :tag => 'a', :content => 'test :if option is false' }
+    end
+    
+    should "not render when :unless option is true" do
+      assert_no_tag 'span', :attributes => { :class => 'navigation_item' },
+                            :descendant => { :tag => 'a', :content => 'test :unless option is true' }
     end
   end
 end
