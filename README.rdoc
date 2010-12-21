@@ -1,6 +1,6 @@
 = Navigation
 
-A simple, powerful navigation helper for Rails. The power of this
+A simple, powerful navigation helper for Rails 3. The power of the
 plugin lies in controlling multiple navigations.
 
 This plugin is extracted from {Real Space}[http://realspace.me].
