@@ -1,6 +1,22 @@
 module Navigation
   module ViewHelper
-    # Examples:
+    # Creates a navigation HTML element which wraps the content
+    # supplied in the block. An element matching the current
+    # navigational +context+ and +location+ will be given an
+    # additional CSS class name of "selected".
+    #
+    # ==== Options
+    #
+    # * <tt>:tag => :span</tt> - Customize the HTML tag type used to
+    #   build the navigation element.
+    # * <tt>:class</tt> - String of CSS class names to add to the
+    #   navigation element.
+    # * <tt>:if</tt> - Specifies a method, proc or string to call to
+    #   determine if the navigation element should be rendered.
+    # * <tt>:unless</tt> - Specifies a method, proc or string to call
+    #   to determine if the navigation element should not be rendered.
+    #
+    # ==== Examples
     #
     #   <%= navigate :main_menu, :posts do %>
     #     <%= link_to 'Posts' ... %>
