@@ -1,25 +1,10 @@
 require 'test_helper'
 
-class PostsController < ActionController::Base
-  navigation :content_menu, :posts
-  def index; end
-end
-
 class ViewHelperTest < ActionController::TestCase
   tests PostsController
   
   def setup
-    @controller = PostsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  
-    @routes = ActionDispatch::Routing::RouteSet.new.tap do |r|
-      r.draw do
-        match ':controller(/:action(/:id))'
-      end
-    end
-    
-    PostsController.stubs(:_routes).returns(@routes)
+    setup_posts_controller
   end
   
   context "Navigation items" do
