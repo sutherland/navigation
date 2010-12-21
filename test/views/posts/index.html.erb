@@ -1,15 +1,23 @@
-<% navigate :main_menu, :posts do %>
-  <%= link_to 'Posts', '/posts' %>
+<%= navigate :context, :action do %>
+  <%= link_to 'test default tag' %>
 <% end %>
 
-<% navigate :main_menu, :comments do %>
-  <%= link_to 'Comments', '/comments' %>
+<%= navigate :context, :action, :tag => :li do %>
+  <%= link_to 'test :tag option' %>
 <% end %>
 
-<% navigate :main_menu, :users, :if => signed_in? do %>
-  <%= link_to 'Users', '/users' %>
+<%= navigate :context, :action, :class => 'blue' do %>
+  <%= link_to 'test :class option' %>
 <% end %>
 
-<% navigate :main_menu, :admin, :class => 'priviledged' do %>
-  <%= link_to 'Admin', '/admin' %>
+<%= navigate :context, :action, :if => true do %>
+  <%= link_to 'test :if option is true' %>
+<% end %>
+
+<%= navigate :context, :action, :unless => false do %>
+  <%= link_to 'test :unless option is false' %>
+<% end %>
+
+<%= navigate :content_menu, :posts do %>
+  <%= link_to 'Posts' %>
 <% end %>

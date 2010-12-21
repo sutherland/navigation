@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class PostsController < ActionController::Base
+class PagesController < ActionController::Base
   navigation :main_menu,    :content
-  navigation :content_menu, :posts
+  navigation :content_menu, :pages
 
   def index
     head :ok
@@ -10,10 +10,10 @@ class PostsController < ActionController::Base
 end
 
 class ControllerTest < ActionController::TestCase
-  tests PostsController
+  tests PagesController
   
   def setup
-    @controller = PostsController.new
+    @controller = PagesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   
@@ -23,7 +23,7 @@ class ControllerTest < ActionController::TestCase
       end
     end
     
-    PostsController.stubs(:_routes).returns(@routes)
+    PagesController.stubs(:_routes).returns(@routes)
   end
   
   should "define navigation definitions" do
@@ -34,6 +34,6 @@ class ControllerTest < ActionController::TestCase
     assert_equal :content, definitions[:main_menu]
     
     assert definitions.include?(:content_menu)
-    assert_equal :posts, definitions[:content_menu]
+    assert_equal :pages, definitions[:content_menu]
   end
 end
