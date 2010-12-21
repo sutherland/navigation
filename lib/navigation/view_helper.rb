@@ -2,19 +2,19 @@ module Navigation
   module ViewHelper
     # Examples:
     #
-    #   <% navigate :main_menu, :posts do %>
+    #   <%= navigate :main_menu, :posts do %>
     #     <%= link_to 'Posts' ... %>
     #   <% end %>
     #
-    #   <% navigate :main_menu, :comments, :tag => :div do %>
+    #   <%= navigate :main_menu, :comments, :tag => :li do %>
     #     <%= link_to 'Comments'... %>
     #   <% end %>
     #
-    #   <% navigate :admin_menu, :users, :if => administrator? do %>
+    #   <%= navigate :admin_menu, :users, :if => administrator? do %>
     #     <%= link_to 'Users' ... %>
     #   <% end %>
     #
-    #   <% navigate :admin_menu, :users, :unless => !administrator? do %>
+    #   <%= navigate :admin_menu, :users, :unless => !administrator? do %>
     #     <%= link_to 'Users' ... %>
     #   <% end %>
     def navigate(context, location, options = {}, &block)
