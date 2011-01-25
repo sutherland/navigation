@@ -6,16 +6,27 @@ module Navigation
     end
     
     module ClassMethods
-      # Examples:
+      # Adds a +before_filter+ to the controller which defines the
+      # +location+ for the +context+.
+      #
+      # ==== Options
+      #
+      # * <tt>:options</tt> - A hash of filter options. See the Rails
+      #   documentation for a list of acceptable filter options.
+      #
+      # ==== Examples
+      #
+      #   class PagesController < ApplicationController
+      #     navigation :content_menu, :pages
+      #   end
       #
       #   class PostsController < ApplicationController
-      #     navigation :main_menu,    :content
       #     navigation :content_menu, :posts
       #   end
       #
-      #   class CommentsController < ApplicationController
-      #     navigation :main_menu,    :content
-      #     navigation :content_menu, :comments
+      #   class UsersController < ApplicationController
+      #     navigation :users_menu, :new,  :only => [:new, :create]
+      #     navigation :users_menu, :edit, :only => [:edit, :update]
       #   end
       def navigation(context, location, options = {})
         before_filter(options) do |controller|
