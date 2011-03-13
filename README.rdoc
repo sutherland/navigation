@@ -69,11 +69,11 @@ In your view, you can control when to render a navigation item using
 the <tt>:if</tt> or <tt>:unless</tt> options:
   
   <%= navigate :admin_menu, :users, :if => administrator? do %>
-    <%= link_to 'Users' ... %>
+    ...
   <% end %>
   
   <%= navigate :admin_menu, :users, :unless => hacker? do %>
-    <%= link_to 'Users' ... %>
+    ...
   <% end %>
   
 == Customize Navigation Items
