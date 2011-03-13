@@ -72,7 +72,7 @@ the <tt>:if</tt> or <tt>:unless</tt> options:
     <%= link_to 'Users' ... %>
   <% end %>
   
-  <%= navigate :admin_menu, :users, :unless => !administrator? do %>
+  <%= navigate :admin_menu, :users, :unless => hacker? do %>
     <%= link_to 'Users' ... %>
   <% end %>
   
@@ -80,8 +80,8 @@ the <tt>:if</tt> or <tt>:unless</tt> options:
 
 === HTML Tag
 
-You can specify a different HTML tag for your navigation items using
-the <tt>:tag</tt> option:
+You can specify a different HTML tag to wrap your navigation items
+using the <tt>:tag</tt> option:
 
   <%= navigate :content_menu, :pages, :tag => :li do %>
     ...
