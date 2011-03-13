@@ -1,9 +1,8 @@
 module Navigation
   module ViewHelper
-    # Creates a navigation HTML element which wraps the content
-    # supplied in the block. An element matching the current
-    # navigational +context+ and +location+ will be given an
-    # additional CSS class name of "selected".
+    # Creates a HTML tag which wraps the content in the specified
+    # block. Marks the tag as "selected" if it matches the location
+    # currently held by the controller.
     #
     # ==== Options
     #
@@ -37,13 +36,16 @@ module Navigation
       return if options.include?(:if) && !options[:if]
       return if options.include?(:unless) && options[:unless]
       
+      # Use a "span" tag as the wrapper, unless specified otherwise.
       options[:tag] ||= :span
-      options[:class] = "#{options[:class]} navigation_item".strip
       
+      # Mark the tag as "selected" if it matches the context &
+      # location currently held by the controller.
       if @_navigation_definitions && @_navigation_definitions[context] == location
-        options[:class] = "selected #{options[:class]}"
+        options[:class] = "selected #{options[:class]}".strip
       end
 
+      # Wrap and return the content.
       content_tag(options.delete(:tag), capture(&block), options)
     end
   end
