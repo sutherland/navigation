@@ -31,11 +31,11 @@ When the view is rendered, the "current" navigation item will be
 selected. Assuming the request routed to the PagesController, the view
 is rendered as:
 
-  <span class="selected navigation_item">
+  <span class="selected">
     <a href="...">Pages</a>
   </span>
   
-  <span class="navigation_item">
+  <span>
     <a href="...">Posts</a>
   </span>
 
@@ -86,12 +86,6 @@ the <tt>:tag</tt> option:
   <%= navigate :content_menu, :pages, :tag => :li do %>
     ...
   <% end %>
-  
-Will render as:
-
-  <li class="navigation_item">
-    ...
-  </li>
 
 === CSS Class
 
@@ -103,7 +97,7 @@ You can specify CSS class names using the <tt>:class</tt> option:
 
 Will render as:
 
-  <span class="blue navigation_item">
+  <span class="blue">
     ...
   </span>
 
