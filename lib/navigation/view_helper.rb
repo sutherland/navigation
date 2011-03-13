@@ -17,19 +17,19 @@ module Navigation
     #
     # ==== Examples
     #
-    #   <%= navigate :main_menu, :posts do %>
+    #   <%= navigate :content, :posts do %>
     #     <%= link_to 'Posts' ... %>
     #   <% end %>
     #
-    #   <%= navigate :main_menu, :comments, :tag => :li do %>
+    #   <%= navigate :content, :comments, :tag => :li do %>
     #     <%= link_to 'Comments'... %>
     #   <% end %>
     #
-    #   <%= navigate :admin_menu, :users, :if => administrator? do %>
+    #   <%= navigate :admin, :users, :if => administrator? do %>
     #     <%= link_to 'Users' ... %>
     #   <% end %>
     #
-    #   <%= navigate :admin_menu, :users, :unless => !administrator? do %>
+    #   <%= navigate :admin, :users, :unless => hacker? do %>
     #     <%= link_to 'Users' ... %>
     #   <% end %>
     def navigate(context, location, options = {}, &block)
