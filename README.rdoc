@@ -100,7 +100,7 @@ using the <tt>:tag</tt> option:
 
 You can specify CSS class names using the <tt>:class</tt> option:
 
-  <%= navigate :main_menu, :pages, :class => 'blue' do %>
+  <%= navigate :content_menu, :pages, :class => 'blue' do %>
     ...
   <% end %>
 
