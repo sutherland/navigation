@@ -112,4 +112,4 @@ Will render as:
 
 == License
 
-Copyright (c) 2010 Jonathan Sutherland. Released under the MIT license.
+Copyright (c) 2011 Jonathan Sutherland. Released under the MIT license.
