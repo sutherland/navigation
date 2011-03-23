@@ -3,7 +3,7 @@
 A simple, powerful navigation plugin for Rails 3. The power of the
 plugin lies in controlling multiple navigation menus.
 
-This plugin is extracted from {Real Space}[http://realspace.me].
+This plugin is used in {Pockify}[http://pockify.com].
 
 == Basic Usage
 
